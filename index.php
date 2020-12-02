@@ -1,118 +1,140 @@
 <?php
-// Получить остаток деления 7 на 3
-$a=7;
-$b=3;
-echo "Получить остаток деления 7 на 3<br>";
-echo $a%$b;
-
-// Получить целую часть сложения 7 и 7,15
-$a=7;
-$b=7.15;
-echo "<br>";
-echo "<br>";
-echo "Получить целую часть сложения 7 и 7,15:<br>";
-echo intval($a + $b);
-
-// Получить корень из 25
-$a=25;
-echo "<br>";
-echo "<br>";
-echo "Получить корень из 25:<br>";
-echo sqrt($a);
-
-// Получить 4-е слово из фразы - Десять негритят пошли купаться в море
-$a = 'Десять негритят пошли купаться в море';
-echo "<br>";
-echo "<br>";
-echo "Получить 4-е слово из фразы - Десять негритят пошли купаться в море:<br>";
-echo "Да как такое делать!?<br> ";
-echo explode(' ',  $a)[3];
-
-// Получить 17-й символ из фразы - Десять негритят пошли купаться в море
-$a = 'Десять негритят пошли купаться в море';
-echo "<br>";
-echo "<br>";
-echo "Получить 17-й символ из фразы - Десять негритят пошли купаться в море:<br>";
-echo mb_substr($a, 16, 1);
-
-// Сделать заглавной первую букву во всех словах фразы - Десять негритят пошли купаться в море
-$a = 'php does not eat russian letters';
-echo "<br>";
-echo "<br>";
-echo "Сделать заглавной первую букву во всех словах фразы - php does not eat russian letters:<br>";
-echo "<br>";
-echo ucwords($a);
-
-// Посчитать длину строки - Десять негритят пошли купаться в море
-$a = 'Десять негритят пошли купаться в море';
-echo "<br>";
-echo "<br>";
-echo "Посчитать длину строки - Десять негритят пошли купаться в море<br>";
-echo mb_strlen($a);
-
-// Правильно ли утверждение true равно 1
-$a = 'true';
-echo "<br>";
-echo "<br>";
-echo "Правильно ли утверждение true равно 1?";
-echo "<br>";
-echo $a == 1;
-echo "ага";
+$arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
 
 
-// Правильно ли утверждение false тождественно 0
-$a = 'false';
-echo "<br>";
-echo "<br>";
-echo "Правильно ли утверждение false тождественно 0?";
-echo "<br>";
-echo $a === 0;
-echo "Не-а";
+// посчитать длину массива
+$length = count($arr);
 
-// Какая строка длиннее three - три
-$a = "three";
-$b = "три";
-echo "<br>";
-echo "<br>";
-echo "Какая строка длиннее three - три";
-echo "<br>";
-var_export(mb_strlen('три') > mb_strlen('three'));
+echo $length;
+echo "\n<br>\n";
 
 
-// Какое число больше 125 умножить на 13 плюс 7 или 223 плюс 28 умножить 2
-$a = 125 * 13 + 7;
-$b = 223 + 28 * 2;
-echo "<br>";
-echo "<br>";
-echo "Какое число больше 125 умножить на 13 плюс 7 или 223 плюс 28 умножить 2?<br>";
-echo $a > $b ? 'первое больше' : ($a < $b ? 'второе больше' : 'равны');
+// переместить первые 4 элемента массива в конец массива
+$temp = array_splice($arr, 0, 4);
+$arr = array_merge($arr, $temp);
+
+var_export($arr);
+echo "\n<br>\n";
 
 
-//
+// получить сумму 4,5,6 элемента
+$sum = $arr[3] + $arr[4] + $arr[5];
+
+echo $sum;
+echo "\n<br>\n";
 
 
 
 
+$firstArr = [
+    'one' => 1,
+    'two' => 2,
+    'three' => 3,
+    'foure' => 5,
+    'five' => 12,
+];
+
+$secondArr = [
+    'one' => 1,
+    'seven' => 22,
+    'three' => 32,
+    'foure' => 5,
+    'five' => 13,
+    'six' => 37,
+];
+
+
+// найти все элементы которые отсутствуют в первом массиве и присутствуют во втором
+$result = array_diff_key($secondArr, $firstArr);
+
+var_export($result);
+echo "\n<br>\n";
+
+$result = array_diff_assoc($secondArr, $firstArr);
+
+var_export($result);
+echo "\n<br>\n";
+
+
+// найти все элементы которые присутствую в первом и отсутствуют во втором
+$result = array_diff_key($firstArr, $secondArr);
+
+var_export($result);
+echo "\n<br>\n";
+
+$result = array_diff_assoc($firstArr, $secondArr);
+
+var_export($result);
+echo "\n<br>\n";
+
+
+// найти все элементы значения которых совпадают
+$result = array_intersect($firstArr, $secondArr);// + array_intersect($secondArr, $firstArr);
+
+var_export($result);
+echo "\n<br>\n";
+
+// найти все элементы значения которых отличается
+$result = array_diff($firstArr, $secondArr) + array_diff($secondArr, $firstArr);
+
+var_export($result);
+echo "\n<br>\n";
 
 
 
 
+$firstArr = [
+    'one' => 1,
+    'two' => [
+        'one' => 1,
+        'seven' => 22,
+        'three' => 32,
+    ],
+    'three' => [
+        'one' => 1,
+        'two' => 2,
+    ],
+    'foure' => 5,
+    'five' => [
+        'three' => 32,
+        'foure' => 5,
+        'five' => 12,
+    ],
+];
 
 
+// получить все вторые элементы вложенных массивов
+$result = [];
+foreach ($firstArr as $arr) {
+    if (is_array($arr)) {
+        $result += array_slice($arr, 1 , 1);
+    }
+}
+
+var_export($result);
+echo "\n<br>\n";
 
 
+// получить общее количество элементов в массиве
+$count = count($firstArr);
+foreach ($firstArr as $arr) {
+    if (is_array($arr)) {
+        $count += count($arr);
+    }
+}
 
+echo $count;
+echo "\n<br>\n";
 
+// получить сумму всех значений в массиве
+$sum = 0;
+foreach ($firstArr as $arr) {
+    if (is_array($arr)) {
+        $sum += array_sum($arr);
+    } else {
+        $sum += $arr;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+echo $sum;
+echo "\n<br>\n";
