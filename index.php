@@ -138,3 +138,165 @@ foreach ($firstArr as $arr) {
 
 echo $sum;
 echo "\n<br>\n";
+
+
+
+
+// Юные волшебники
+
+
+echo "<br><br><br><br><br>Курс трёх волшебников:";
+
+
+echo "<br><br><br><br><br>";
+
+echo "Прохождение курса молодого волшебника:";
+
+$arr = [
+'1' => 1,
+'2' => 2,
+'3' => 3,
+'4' => 4,
+'5' => 5,
+];
+echo '<br>';
+function myCounter(array $arr) 
+{
+	$counter = 1;
+    foreach ($arr as $key => $vabue) {
+
+		foreach($arr as $key => $value) {
+			if( is_array($value)) {
+				myCounter($value);
+			} else {
+				if ($counter==2) {
+					var_export($value);
+				}
+			}
+			$counter++;
+		}
+	}
+}
+
+
+myCounter($arr);
+
+
+
+
+
+
+
+// 
+
+echo "<br><br><br><br><br>Прохождение курса молодого волшебника2:";
+
+echo "<br>";
+
+$arr = [
+'1' => 10,
+'2' => [
+'1' => 20,
+'2' => 30,
+'3' => 10,
+],
+'3' => 20,
+];
+	function arSum(array $arr):int
+	{
+	return array_sum($arr);
+	}
+echo arSum($arr);
+
+
+
+
+
+//
+echo "<br><br><br><br><br>Прохождение курса молодого волшебника3:";
+
+echo "<br>";
+
+$arr = [
+'1' => 10,
+'2' => [
+'1' => 20,
+'2' => 30,
+'3' => 10,
+],
+'3' => 20,
+];
+
+function arSumRec(array $arr):int
+{
+	$sum = arSum($arr);
+	foreach($arr as $key => $value) {
+		if(is_array($value)) { 
+			$sum += arSumRec($value);
+		}
+	}
+ return $sum;
+}
+echo arSum($arr);
+
+
+
+
+
+
+
+//
+echo "<br><br><br><br><br>Прохождение курса молодого волшебника4:";
+
+echo "<br>";
+
+$arr = [
+'1' => 10,
+'2' => [
+'1' => 20,
+'2' => 30,
+'3' => 10,
+],
+'3' => 20,
+];
+function test()
+{
+	$a=10;
+	return $a;
+}
+
+function test1()
+	{
+	echo test(); 
+	}
+	
+	test1();
+	
+	
+	
+	
+//
+echo "<br><br><br><br><br>Прохождение курса молодого волшебника5:";
+
+echo "<br>";
+
+$arr = [
+'1' => 10,
+'2' => [
+'1' => 20,
+'2' => 30,
+'3' => 10,
+],
+'3' => 20,
+];
+function test2($a=10)
+{
+	return $a;
+}
+
+function test3($b)
+	{
+	echo test2($b); 
+	}
+	
+	test3(20);
